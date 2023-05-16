@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "GCC",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:/Users/guoya/scoop/apps/gcc/current/bin/g++.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}
