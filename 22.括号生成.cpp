@@ -22,12 +22,12 @@ public:
             ans.push_back(quote);
             return;
         }
-        if(left == right){
+
+        if(left > 0){
             backtrack(ans, quote + "(", left - 1, right);
-        }else if(left < right){
-            if(left > 0){
-                backtrack(ans, quote + "(", left - 1, right);
-            }
+        }
+
+        if(left < right){
             backtrack(ans, quote + ")", left, right - 1);
         }
     }
