@@ -10,7 +10,8 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\out\\test.exe"
+                "${fileDirname}\\out\\test.exe",
+                "-std=c++17"
             ],
             "options": {
                 "cwd": "${fileDirname}"

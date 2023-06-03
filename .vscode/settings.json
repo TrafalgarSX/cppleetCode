@@ -3,6 +3,12 @@
         "*.tcc": "cpp",
         "istream": "cpp",
         "iostream": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "functional": "cpp",
+        "string_view": "cpp",
+        "streambuf": "cpp"
     }
 }
