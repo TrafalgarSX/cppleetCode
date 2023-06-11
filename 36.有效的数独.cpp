@@ -17,10 +17,27 @@ public:
     }
 
     bool isValidSudoku_solution(vector<vector<char>>& board) {
-        bool ans = false;
-
-
-        return ans;
+        int row[9][9] = {0};
+        int column[9][9] = {0};
+        int sudoku[9][9] = {0};
+        for (size_t i = 0; i < 9; i++)
+        {
+          for (size_t j = 0; j < 9; j++){
+            if(board[i][j] == '.') 
+                continue;
+            int indexNumber = board[i][j] - '1';
+            if(row[i][indexNumber]) 
+                return false;
+            if(column[j][indexNumber]) 
+                return false;
+            if(sudoku[j/3 + (i / 3) * 3][indexNumber])
+                return false;
+            row[i][indexNumber] = 1;
+            column[j][indexNumber] = 1;
+            sudoku[j/3 + (i / 3) * 3][indexNumber] = 1;
+          }
+        }
+        return true;
 
     }
 
