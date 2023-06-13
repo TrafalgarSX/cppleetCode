@@ -21,6 +21,29 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
+        // return deleteDuplicates_solution(head);
+        return deleteDuplicates_fs(head);
+    }
+
+    ListNode* deleteDuplicates_solution(ListNode* head){
+        if(head == nullptr){
+            return head;
+        }
+        ListNode *cur = head;
+        while(cur->next != nullptr){
+            if(cur->val == cur->next->val){
+                cur->next = cur->next->next;
+            }else{
+                cur = cur->next;
+            }
+        }
+
+        return head;
+    }
+
+
+
+    ListNode* deleteDuplicates_fs(ListNode* head){
         if(head == nullptr){
             return head;
         }
