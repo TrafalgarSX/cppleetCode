@@ -6,45 +6,30 @@
 
 #include <string>
 #include <bitset>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
     string addBinary(string a, string b) {
-        int posA = a.length() - 1;
-        int posB = b.length() - 1;
-        int carry = 0;
         string ans;
+        int carry = 0;
+        int size = max(a.length(), b.length());
+        reverse(a.begin(), a.end());
+        reverse(b.begin(), b.end());
 
-        if(posA > posB){
-            string temp(posA - posB, '0');
-            b = temp + b;
-            posB = posA;
-        }else if(posA < posB){
-            string temp(posB - posA, '0');
-            a = temp + a;
-            posA = posB;
+        for(int i = 0; i < size; i++){
+            carry += i < a.size() ? a[i] - '0' : 0;
+            carry += i < b.size() ? b[i] - '0' : 0;
+            ans.push_back(carry % 2 == 1 ? '1' : '0');
+            carry /= 2;
         }
-        while(posA >= 0 && posB >= 0){
-            int temp = a[posA] - '0' + b[posB] - '0' + carry;
-            char c;
 
-            if(temp % 2 == 0){
-                c = '0';
-            }else{
-                c = '1';
-            }
-            carry = temp >= 2 ? 1 : 0;
-            
-            ans.insert(ans.begin(), c);
-            posA--;
-            posB--;
-        }
         if(carry == 1){
-            ans.insert(ans.begin(), '1');
+            ans.push_back('1');
         }
-
+        reverse(ans.begin(), ans.end());
         return ans;
     }
 };
