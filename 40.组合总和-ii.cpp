@@ -17,6 +17,7 @@ public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         vector<int> combine;
 
+        // 排序， 方便去重判断。
         sort(candidates.begin(), candidates.end());
         backtrack(candidates, combine, target, 0, 0, 0, candidates.size());
 
@@ -34,6 +35,7 @@ public:
             return;
         }
 
+        // pos + 1可以保证，每个数字在每个组合中只能使用一次
         for (size_t i = pos; i < depth; i++)
         {
             // 去重， 这样解集中不会包含重复的组合
@@ -42,6 +44,7 @@ public:
             }
             int num = candidates.at(i);
             sum += num;
+            // 剪枝，否则会超时
             if( sum <= target){
                 combine.push_back(num);
                 backtrack(candidates, combine, target, i + 1, sum,
