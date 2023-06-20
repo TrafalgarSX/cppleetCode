@@ -3,7 +3,9 @@
  *
  * [21] 合并两个有序链表
  */
-
+#include <iostream>
+#include "include/ListNode.h"
+using namespace std;
 // @lc code=start
 // * Definition for singly-linked list.
 // struct ListNode {
@@ -13,8 +15,6 @@
 //       ListNode(int x) : val(x), next(nullptr) {}
 //       ListNode(int x, ListNode *next) : val(x), next(next) {}
 //   };
-#include<iostream>
-using namespace std;
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
