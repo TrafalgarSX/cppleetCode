@@ -10,7 +10,7 @@
 using namespace std;
 class Solution {
 public:
-
+#if 0
     int maxArea(vector<int>& height) {
         int size = height.size();
         int maxWater = 0;
@@ -31,6 +31,7 @@ public:
 
         return maxWater;
     }
+#endif
 
     //time exceeded
     int maxArea_brutal_force(vector<int>& height) {
@@ -49,6 +50,31 @@ public:
         }
         return maxWater;       
     }
+
+    int maxArea(vector<int>& height) {
+        int ans = 0;
+        int left = 0;
+        int right = height.size() - 1;
+
+        while(left < right){
+            int temp_height = std::min(height[left], height[right]);
+            ans = std::max(ans, temp_height * (right - left));
+            if(height[left] < height[right]){
+                left++;
+            }else{
+                right--;
+            }
+        }
+
+        return ans;
+    }
 };
 // @lc code=end
+int main(void){
+  Solution solution;
+  std::vector<int> height = {1,8,6,2,5,4,8,3,7};
 
+  int ans = solution.maxArea(height);
+  std::cout << ans << std::endl;
+  return 0;
+}

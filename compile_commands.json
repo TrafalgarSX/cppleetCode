@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/workspace/cprojects/leetcode/VS2022-amd64",
+  "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -ID:\\workspace\\cprojects\\leetcode\\include /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi /FoCMakeFiles\\leetcode.dir\\2.两数相加.cpp.obj /FdTARGET_COMPILE_PDB /FS -c D:\\workspace\\cprojects\\leetcode\\2.两数相加.cpp",
+  "file": "D:\\workspace\\cprojects\\leetcode\\2.两数相加.cpp",
+  "output": "CMakeFiles\\leetcode.dir\\2.两数相加.cpp.obj"
+}
+]

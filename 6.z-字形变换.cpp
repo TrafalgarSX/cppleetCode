@@ -9,6 +9,7 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
+#if 0
     string convert(string s, int numRows) {
         int size = s.length();
         if(1 == numRows || size <= numRows){
@@ -34,16 +35,51 @@ public:
         }
         return res; 
     }
+#endif
+    enum class direction {up, down};
+
+    string convert(string s, int numRows) {
+        if(numRows == 1){
+            return s;
+        }
+
+        vector<string> vec_res(numRows);
+        int line_pos = 0;
+        direction direct = direction::down;
+        for(const auto& ch : s){
+            vec_res[line_pos] += ch;
+            if(direct == direction::down){
+                ++line_pos;
+            }else if (direct == direction::up) {
+                --line_pos;
+            }
+            if(line_pos == 0){
+                direct = direction::down;
+            }else if(line_pos == numRows - 1){
+                direct = direction::up;
+            }
+        }
+
+        string ret;
+
+        for(const auto& line : vec_res){
+            ret += line;
+        }
+        return ret;
+    }
 };
-// #define DEBUG
-#ifdef DEBUG
+#if 0
 int main(void){
     Solution solution;
 
     string out = solution.convert("PAYPALISHIRING", 3);
-    cout << out <<endl;
+    std::cout << out << ":compare result is :" << out.compare("PAHNAPLSIIGYIR") << std::endl;
+
+    out = solution.convert("PAYPALISHIRING", 4);
+    std::cout << out << ": compare result is :" << out.compare("PINALSIGYAHRPI") << std::endl;
+
 }
-#endif // DEBUG
+#endif
 
 // @lc code=end
 

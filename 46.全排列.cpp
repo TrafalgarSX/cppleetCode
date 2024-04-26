@@ -9,16 +9,19 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  vector<vector<int>> ans;
   vector<vector<int>> permute(vector<int> &nums) {
     vector<int> permutation;
 
     // backtrack(permutation, nums, 0, nums.size());
 
-    backtrack_std(nums, 0, nums.size());
+    // backtrack_std(nums, 0, nums.size());
+    permute_alg(nums);
 
     return ans;
   }
+
+private:
+  vector<vector<int>> ans;
 
   void backtrack_std(vector<int> &nums, int current_depth, int depth) {
     if (current_depth == depth) {
@@ -28,9 +31,9 @@ public:
 
     // 把用过的放前面， 后面递归的时候都是没用过的
     for (int i = current_depth; i < depth; ++i) {
-      swap(nums[i], nums[current_depth]);
+      std::swap(nums[i], nums[current_depth]);
       backtrack_std(nums, current_depth + 1, depth);
-      swap(nums[i], nums[current_depth]);
+      std::swap(nums[i], nums[current_depth]);
     }
   }
 
@@ -74,13 +77,19 @@ public:
   }
 
   vector<vector<int>> permute_alg(vector<int> &nums) {
-    vector<vector<int>> ans;
     sort(nums.begin(), nums.end());
     ans.push_back(nums);
-    while (next_permutation(nums.begin(), nums.end())) {
+    while (std::next_permutation(nums.begin(), nums.end())) {
       ans.push_back(nums);
     }
     return ans;
   }
 };
 // @lc code=end
+
+int main(void){
+  Solution solution;
+  std::vector<int> nums{0, -1, 1};
+  solution.permute(nums);
+  return 0;
+}

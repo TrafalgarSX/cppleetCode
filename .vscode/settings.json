@@ -9,6 +9,7 @@
         "unordered_set": "cpp",
         "functional": "cpp",
         "string_view": "cpp",
-        "streambuf": "cpp"
+        "streambuf": "cpp",
+        "climits": "cpp"
     }
 }

@@ -25,6 +25,7 @@ pair<int, string> valueSymbols[] = {
     };
 class Solution {
 public:
+#if 0
     //simulate
     string intToRoman(int num) {
         string roman;
@@ -39,9 +40,9 @@ public:
             }
         }
         
-
         return roman;
     }
+#endif
     string intToRoman_hardcode(int num) {
         // string romanAlp[] = {"I", "V", "X", "L", "C", "D", "M", 
         //                      "IV", "IX", "XL", "XC", "CD", "CM"};
@@ -63,6 +64,34 @@ public:
         roman.append(ones[num]);
         return roman;
     }
+
+
+    string intToRoman(int num) {
+        std::string ans;
+
+        while(num > 0){
+            for (auto &[value, symbol] : valueSymbols)
+            {
+                while(num >= value){
+                    ans.append(symbol);
+                    num -= value;
+                }
+
+                if(num == 0){
+                    break;
+                }
+            }
+        }
+
+        return ans;
+    }
 };
 // @lc code=end
 
+
+int main(void){
+  Solution solution;
+
+  std::cout << solution.intToRoman(3) << std::endl;
+  return 0;
+}

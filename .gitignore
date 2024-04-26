@@ -1,1 +1,5 @@
 *.exe
+build/
+.cache/
+out/
+VS2022-*/

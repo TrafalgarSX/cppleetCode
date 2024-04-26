@@ -17,8 +17,24 @@ public:
         int length = 0;
 
         // length = lengthOfLastWord_sstream(s);
-        length = lengthOfLastWord_split(s);
+        // length = lengthOfLastWord_split(s);
         // length = lengthOfLastWord_regex(s);
+        length = lengthofLastWord_scan(s);
+        return length;
+    }
+
+    int lengthofLastWord_scan(const std::string& s){
+        int length = 0;
+        int i = s.length() - 1;
+        while(i >= 0 && s[i] == ' '){
+            --i;
+        }
+
+        while(i>= 0 && s[i] != ' '){
+            ++length;
+            --i;
+        }
+
         return length;
     }
 

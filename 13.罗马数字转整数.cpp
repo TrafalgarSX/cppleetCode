@@ -10,21 +10,7 @@
 using namespace std;
 // @lc code=start
 
-unordered_map<string, int> valueSymbols = {
-        {"M", 1000},
-        {"CM", 900},
-        {"D", 500},
-        {"CD", 400},
-        {"C", 100},
-        {"XC", 90},
-        {"L", 50},
-        {"XL", 40},
-        {"X", 10},
-        {"IX", 9},
-        {"V", 5},
-        {"IV", 4},
-        {"I", 1}
-};
+#if FRONT_TO_END
 unordered_map<char, int> valueSymbolsLess= {
         {'M', 1000},
         {'D', 500},
@@ -34,11 +20,16 @@ unordered_map<char, int> valueSymbolsLess= {
         {'V', 5},
         {'I', 1}
 };
+#endif
 class Solution {
 public:
 
-    //end to front
     int romanToInt(string s) {
+        // return romanToInt_front_to_end(s);
+        return romanToInt_end_to_fron(s);
+    }
+
+    int romanToInt_end_to_fron(const string& s){
         int size = s.length();
         int ans = 0;
 
@@ -77,7 +68,9 @@ public:
         }
 
         return ans;
+
     }
+#if FRONT_TO_END
     int romanToInt_front_to_end(string s) {
         int size = s.length();
         int ans = 0;
@@ -93,25 +86,22 @@ public:
         }
         return ans;
     }
-
+    // front to end
     int romanToInt_mine(string s) {
-        int size = s.length();       
-        int roman = 0;
+        int ans;
 
-        for (size_t i = 0; i < size; i++)
-        {
-            if(i + 1 < size ){
-                auto iter = valueSymbols.find(s.substr(i, 2));
-                if(iter != valueSymbols.end()){
-                    roman += iter->second;
-                    i++;
-                    continue;
-                }
+        for(int i = 0; i< s.size(); ++i){
+            int value = valueSymbolsLess[s[i]];
+            if(i + 1 < s.size() && value < valueSymbolsLess[s[i + 1]]){
+                ans -= value;
+            }else{
+                ans += value;
             }
-            roman += valueSymbols.find(s.substr(i, 1))->second;
         }
-        return roman; 
+
+        return ans;
     }
+#endif
 };
 // @lc code=end
 

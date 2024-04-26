@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <iostream>
 #include <unordered_map>
-#include <set>
+#include <unordered_set>
 using namespace std;
 // @lc code=start
 class Solution {
@@ -53,16 +53,16 @@ public:
             ans.push_back(nums);
             return;
         }
-        set<int> s;
-        // 一层循环里面不能有相同的。
+
+        std::unordered_set<int> set;
         for(int i = current_depth; i < depth; ++i){
-            if(s.count(nums[i]))
+            if(set.find(nums[i]) != set.end()){
                 continue;
-            s.insert(nums[i]);
-            swap(nums[i], nums[current_depth]);
+            }
+            set.emplace(nums[i]);
+            std::swap(nums[current_depth], nums[i]);
             backtrack_std(nums, current_depth + 1, depth);
-            swap(nums[i], nums[current_depth]);
-                
+            std::swap(nums[i], nums[current_depth]);
         }
     }
 };

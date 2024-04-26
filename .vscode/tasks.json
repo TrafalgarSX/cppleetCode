@@ -10,7 +10,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\out\\test.exe",
+                "${workspaceRoot}/test.exe",
                 "-std=c++17"
             ],
             "options": {
