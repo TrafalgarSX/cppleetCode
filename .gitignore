@@ -1,5 +1,7 @@
 *.exe
+compile_commands.json
 build/
 .cache/
 out/
+Visual Studio Community 2022*/
 VS2022-*/

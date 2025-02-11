@@ -8,6 +8,7 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
+    // 要考虑没有找到 target 的情况  全部大于 target  全部小于 target, 数组中找不到 target
     vector<int> searchRange(vector<int>& nums, int target) {
         vector<int> ans;
 
@@ -19,45 +20,37 @@ public:
 
     int left_bound(vector<int>& nums, int target){
         int left = 0, right = nums.size() - 1;
-
-        while(left <= right){
-            int mid = left + (right - left) / 2;
-            if(nums[mid] == target){
+        while(left <= right) {
+            int mid = left + ((right - left) / 2);
+            if(nums[mid] > target) {
                 right = mid - 1;
-            }else if(nums[mid] < target){
+            }else if(nums[mid] < target) {
                 left = mid + 1;
-            }else if(nums[mid] > target){
+            }else{
                 right = mid - 1;
             }
         }
-        // 应该利用短路特性， left >= nums.size()在前，否则会出现nums为空的时候
-        // 使用nums[left] 报错
-        if(left >= nums.size() || nums[left] != target ){
+        if(left >= nums.size()|| nums[left] != target) {
             return -1;
         }
-
         return left;
     }
 
     int right_bound(vector<int>& nums, int target){
         int left = 0, right = nums.size() - 1;
-
-        while(left <= right){
-            int mid = left + (right - left) / 2;
-            if(nums[mid] == target){
-                left = mid + 1;
-            }else if(nums[mid] < target){
-                left = mid + 1;
-            }else if(nums[mid] > target){
+        while(left <= right) {
+            int mid = left + ((right - left) / 2);
+            if(nums[mid] > target) {
                 right = mid - 1;
+            }else if(nums[mid] < target) {
+                left = mid + 1;
+            }else{
+                left = mid + 1;
             }
         }
-        // 应该利用短路特性， right < 0在前，否则会出现nums为空的时候
-        // 使用nums[right] 报错
-        if(right < 0 || nums[right] != target){
+        if(right < 0 || nums[right] != target) {
             return -1;
         }
-
         return right;
     }
 };
