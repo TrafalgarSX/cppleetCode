@@ -1,8 +1,3 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <unordered_map>
 #include <ListNode.h>
 using namespace std;
 /*
@@ -25,19 +20,17 @@ using namespace std;
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* first = nullptr;
-        ListNode* second = head;
-        ListNode* temp;
+        auto cur = head;
+        auto pre = static_cast<ListNode*>(nullptr);
 
-        while(second){
-            temp = second->next;
-            
-            second->next = first;
-            first = second;
-            second = temp;
+        while(cur) {
+            auto tmp = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = tmp;
         }
 
-        return first;
+        return pre;
     }
 };
 // @lc code=end

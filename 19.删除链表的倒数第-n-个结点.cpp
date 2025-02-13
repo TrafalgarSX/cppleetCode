@@ -21,21 +21,22 @@ public:
     // 快慢指针, leetcode中c/c++代码不释放空间
     // 栈的思路也很有意思， 相当于把链表逆转了，不过要依赖一个栈
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode *fast, *slow, *dummy, *temp;
-        dummy = new ListNode(-1, head);
-        fast = slow = dummy;
-        int count = 0;
-        while(fast->next != nullptr){
-            if(count != n){
-                count++;
-            }else{
-                slow = slow->next;
-            }
+        auto dummy = new ListNode(-1, head);
+        auto fast = dummy;
+        auto slow = dummy;
+        for(int i = 0; i < n; i++) {
             fast = fast->next;
         }
-        // temp = slow->next;
+
+        while(fast->next) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+
+        auto temp = slow->next;
         slow->next = slow->next->next;
-        // delete temp;
+        delete temp;
+
         return dummy->next;
     }
 };

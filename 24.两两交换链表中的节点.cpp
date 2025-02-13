@@ -21,15 +21,16 @@ class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
         ListNode *dummy = new ListNode(-1, head);
-        ListNode *temp, *cur;
-        cur = dummy;
+        auto pre = dummy;
+        auto cur = head;
+        while(cur && cur->next) {
+            auto temp = cur->next->next;
+            pre->next = cur->next;
+            cur->next->next = cur;
+            cur->next = temp;
 
-        while(cur->next != nullptr && cur->next->next != nullptr){
-            temp = cur->next;
-            cur->next  = cur->next->next;
-            temp->next = cur->next->next;
-            cur->next->next = temp;
-            cur = cur->next->next;
+            pre = cur;
+            cur = temp;
         }
 
         return dummy->next;
